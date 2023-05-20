@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+const { createHash } = require('node:crypto');
 
 const express = require('express');
 
@@ -28,10 +28,11 @@ app.post('/login',async (req, res) => {
     const loginBody = req.body;
     const userName = loginBody.userName;
     const password = loginBody.password;
-    const hashedPassword = createHash('sha3-256').update(password).digest('hex');
-    const redisPassword = await redisClient.hGet('hashedpasswords',userName);
-    console.log("Password for "+ userName +" "+ redisPassword);
-    if (hashedPassword === redisPassword){
+    const hashedPassword = password == null ? null : createHash('sha3-256').update(password).digest('hex');
+    const redisPassword = password == null ? null : await redisClient.hGet('hashedpasswords',userName);
+    // console.log("Password for "+ userName +" "+ redisPassword);
+    
+    if (password != null && hashedPassword === redisPassword){
        res.send("Welcome " + userName); 
     } else {
         res.status(401); // This means you are unauthorized.
