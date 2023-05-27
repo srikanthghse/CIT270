@@ -10,15 +10,29 @@ const app = express();
 
 const port = 3000;
 
+const https = require('https')
+const fs = require('fs')
+
 const redisClient = Redis.createClient({url:'redis://127.0.0.1:6379'});
 
 // This allows json (JavaScript object notation) requests.
 app.use(bodyParser.json());
 
-app.listen(port, ()=> {
-    redisClient.connect();
-    console.log("Listening on port: " + port)
-});
+// app.listen(port, ()=> {
+//    redisClient.connect();
+//    console.log("Listening on port: " + port)
+// });
+
+app.get('/', (req, res) => {
+  res.send('Hello HTTPS!')
+})
+
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app).listen(port, () => {
+  console.log('Listening...')
+})
 
 app.get('/', (req, res) => {
     res.send("Welcome to my server.")
