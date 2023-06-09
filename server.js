@@ -55,16 +55,3 @@ app.post('/login',async (req, res) => {
         res.send("Your password is incorrect.");
     }
 });
-
-// Make local think it is using the correct domain or upload it to our server. 
-// What are the high level steps, pros and cons of each. 
-// Computer network configurations
-// What is DNS server, an IP address of a server which uis part of internet connection
-// BYUI wifi decides what your DNS server is
-// Point to owned DNS server, this can do caching, can do a look up, for example our google DNS server 
-// We need to change our HOST DNS file, our internal network settings are found in this file.
-// We can edit this file and redirect it. 
-// We ust run this as admin and edit on a notepad or nano 
-// We put the IP 127.0.0.1 followed by the name austinjudkins.cit270.com
-// sudo nano /etc/hosts
-// c:\windows\system32\drivers\etc\hosts
