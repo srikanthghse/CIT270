@@ -1,12 +1,12 @@
 
 const express = require('express');
 const app = express();
-const port = 3000; 
+const port = 443; 
 const bodyParser = require('body-parser');
 const Redis = require('redis');
 const { createHash } = require('node:crypto');
-const fs = require('fs')
-const https = require('https')
+const fs = require('fs');
+const https = require('https');
 const redisClient = Redis.createClient();//this creates a pending connection to redis
 
 
