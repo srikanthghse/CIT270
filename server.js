@@ -37,12 +37,13 @@ https.createServer(
     console.log('Listening on port: '+port);
 });
 
-// app.get('/', (req, res) => {
-//     res.send("<h1>Welcome to your Node Server!</h1>"); 
-// });
+app.get('/', (req, res) => {
+    res.send("<h1>Welcome to your Node Server!</h1>"); 
+});
 
 // To allow the user to send thier uername and pasword,
 // we must create a psot endpoint in the server.js file
+
 app.post('/signup',async(req,res)=>{
     const loginBody = req.body;
     const userName = loginBody.userName;
